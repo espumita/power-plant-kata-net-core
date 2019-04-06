@@ -18,7 +18,6 @@ namespace PowerPlantKata.Tests {
             powerPlantConsumer.Received(1).Consume(OneGigawatt);
         }
         
-        
         [Test]
         public void supply_electricity_to_multiple_areas() {
             var aPowerPlant = new PowerPlant();
@@ -29,8 +28,8 @@ namespace PowerPlantKata.Tests {
 
             aPowerPlant.SupplyElectricity();
 
-            anAreaConsumer.Received(1).Consume(Electricity.GetMegawatts(500));
-            anotherAreaConsumer.Received(1).Consume(Electricity.GetMegawatts(500));
+            anAreaConsumer.Received(1).Consume(Electricity.CreateMegawatts(500));
+            anotherAreaConsumer.Received(1).Consume(Electricity.CreateMegawatts(500));
         }
     }
 }

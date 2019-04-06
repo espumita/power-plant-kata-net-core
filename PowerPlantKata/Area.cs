@@ -4,11 +4,8 @@ using PowerPlantKata.PowerProducers;
 
 namespace PowerPlantKata {
     
-    
-    
     public class Area : AreaElectricConsumer, ElectricProducer<CityElectricConsumer> {
         private List<CityElectricConsumer> consumers;
-        
         
         public Area() {
             consumers = new List<CityElectricConsumer>();
@@ -18,7 +15,6 @@ namespace PowerPlantKata {
             var electricityForEachConsumer = electricity.GetDividedFor(consumers.Count);
             consumers.ForEach(consumer => consumer.Consume(electricityForEachConsumer));
         }
-
 
         public void AddElectricConsumer(CityElectricConsumer consumer) {
             consumers.Add(consumer);

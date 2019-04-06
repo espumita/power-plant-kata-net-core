@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using PowerPlantKata.PowerConsumers;
 using PowerPlantKata.PowerProducers;
 
@@ -11,7 +10,6 @@ namespace PowerPlantKata {
         public PowerPlant() {
             consumers = new List<AreaElectricConsumer>();
         }
-
 
         public void SupplyElectricity() {
             var electricityForEachConsumer = electricity.GetDividedFor(consumers.Count);

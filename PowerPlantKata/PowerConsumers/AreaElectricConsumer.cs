@@ -1,5 +1,5 @@
 namespace PowerPlantKata.PowerConsumers {
-    public interface AreaElectricConsumer : ElectricConsumer{
+    public interface AreaElectricConsumer : ElectricConsumer {
 
     }
 }

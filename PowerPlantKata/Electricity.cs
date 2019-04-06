@@ -9,7 +9,7 @@ namespace PowerPlantKata {
             return new Electricity(1, 0);
         }
 
-        public static Electricity GetMegawatts(int megawatts) {
+        public static Electricity CreateMegawatts(int megawatts) {
             return new Electricity(0, megawatts);
         }
         private Electricity(long gigawatts, long megawatts) {
