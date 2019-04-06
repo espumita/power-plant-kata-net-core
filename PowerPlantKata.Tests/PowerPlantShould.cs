@@ -1,5 +1,6 @@
 using NSubstitute;
 using NUnit.Framework;
+using PowerPlantKata.PowerConsumers;
 
 namespace PowerPlantKata.Tests {
     

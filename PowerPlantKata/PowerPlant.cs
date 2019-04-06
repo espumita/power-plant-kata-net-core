@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using PowerPlantKata.PowerConsumers;
+using PowerPlantKata.PowerProducers;
 
 namespace PowerPlantKata {
     public class PowerPlant : ElectricProducer<AreaElectricConsumer> {
