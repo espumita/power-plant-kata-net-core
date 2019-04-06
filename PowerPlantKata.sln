@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPlantKata", "PowerPlantKata\PowerPlantKata.csproj", "{D3652184-6671-486D-B55E-85337D1827DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPlantKata.Tests", "PowerPlantKata.Tests\PowerPlantKata.Tests.csproj", "{EF4AECA3-E85F-41C7-8510-E5F3B4A44CD6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3652184-6671-486D-B55E-85337D1827DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3652184-6671-486D-B55E-85337D1827DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3652184-6671-486D-B55E-85337D1827DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3652184-6671-486D-B55E-85337D1827DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF4AECA3-E85F-41C7-8510-E5F3B4A44CD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF4AECA3-E85F-41C7-8510-E5F3B4A44CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF4AECA3-E85F-41C7-8510-E5F3B4A44CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF4AECA3-E85F-41C7-8510-E5F3B4A44CD6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
