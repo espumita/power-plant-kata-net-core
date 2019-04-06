@@ -2,20 +2,21 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace PowerPlantKata {
-    public class PowerPlant : ElectricProducer {
-        private List<ElectricConsumer> consumers;
+    public class PowerPlant : ElectricProducer<AreaElectricConsumer> {
+        private List<AreaElectricConsumer> consumers;
         private readonly Electricity electricity = Electricity.CreateOneGigawatt();
         
         public PowerPlant() {
-            consumers = new List<ElectricConsumer>();
+            consumers = new List<AreaElectricConsumer>();
         }
 
 
         public void SupplyElectricity() {
-            consumers.First().Consume(electricity);
+            var electricityForEachConsumer = electricity.GetDividedFor(consumers.Count);
+            consumers.ForEach(consumer => consumer.Consume(electricityForEachConsumer));
         }
 
-        public void AddElectricConsumer(ElectricConsumer consumer) {
+        public void AddElectricConsumer(AreaElectricConsumer consumer) {
             consumers.Add(consumer);
         }
     }

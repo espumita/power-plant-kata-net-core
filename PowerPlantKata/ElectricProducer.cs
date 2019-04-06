@@ -1,5 +1,5 @@
 namespace PowerPlantKata {
-    public interface ElectricProducer {
-        void AddElectricConsumer(ElectricConsumer consumer);
+    public interface ElectricProducer<T> where T: ElectricConsumer{
+        void AddElectricConsumer(T consumer);
     }
 }
