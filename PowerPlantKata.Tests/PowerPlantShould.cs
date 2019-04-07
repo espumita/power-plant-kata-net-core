@@ -19,7 +19,7 @@ namespace PowerPlantKata.Tests {
         }
         
         [Test]
-        public void supply_electricity_to_multiple_areas() {
+        public void supply_power_to_multiple_areas() {
             var aPowerPlant = new PowerPlant();
             var anAreaConsumer = Substitute.For<AreaPowerReceiver>();
             var anotherAreaConsumer = Substitute.For<AreaPowerReceiver>();

@@ -7,7 +7,7 @@ namespace PowerPlantKata.Tests {
         private Power SomePowerPlantPower = Power.CreateMegawatts(500);
 
         [Test]
-        public void transmit_electricity_from_power_plant_to_cities() {
+        public void transmit_power_from_power_plant_to_cities() {
             var anArea = new Area();
             var anCityConsumer = Substitute.For<CityPowerReceiver>();
             var anotherCityConsumer = Substitute.For<CityPowerReceiver>();

@@ -8,7 +8,7 @@ namespace PowerPlantKata.Tests {
 
 
         [Test]
-        public void transmit_electricity_from_area_to_individual_buildings() {
+        public void transmit_power_from_area_to_individual_buildings() {
             var aCity = new City();
             var aBuildingConsumer = Substitute.For<BuildingPowerReceiver>();
             var aNotherBuildingConsumer = Substitute.For<BuildingPowerReceiver>();
