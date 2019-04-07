@@ -15,9 +15,13 @@ namespace PowerPlantKata {
             powerReceivers.Add(powerReceiver);
         }
 
-        public void Receive(Power power) {
+        public virtual void ReceiveFrom<T>(PowerProducer<T> powerSource, Power power) where T : PowerReceiver {
             var electricityForEachConsumer = power.GetDividedFor(powerReceivers.Count);
-            powerReceivers.ForEach(consumer => consumer.Receive(electricityForEachConsumer));
+            powerReceivers.ForEach(consumer => consumer.ReceiveFrom(this, electricityForEachConsumer));
+        }
+
+        public virtual void GetNotifiedOfElectricConsumeOff(PowerReceiver powerReceiver, Power createKilowatts) {
+            throw new System.NotImplementedException();
         }
     }
 }

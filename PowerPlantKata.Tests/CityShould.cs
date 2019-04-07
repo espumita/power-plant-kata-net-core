@@ -9,16 +9,17 @@ namespace PowerPlantKata.Tests {
 
         [Test]
         public void transmit_power_from_area_to_individual_buildings() {
+            var anArea = Substitute.For<Area>();
             var aCity = new City();
             var aBuildingConsumer = Substitute.For<BuildingPowerReceiver>();
             var aNotherBuildingConsumer = Substitute.For<BuildingPowerReceiver>();
             aCity.AddPowerReceiver(aBuildingConsumer);
             aCity.AddPowerReceiver(aNotherBuildingConsumer);
             
-            aCity.Receive(SomeAreaPower);
+            aCity.ReceiveFrom(anArea, SomeAreaPower);
             
-            aBuildingConsumer.Received(1).Receive(Power.CreateKilowatts(4));
-            aNotherBuildingConsumer.Received(1).Receive(Power.CreateKilowatts(4));            
+            aBuildingConsumer.Received(1).ReceiveFrom(aCity,Power.CreateKilowatts(4));
+            aNotherBuildingConsumer.Received(1).ReceiveFrom(aCity, Power.CreateKilowatts(4));            
         }
     }
 }

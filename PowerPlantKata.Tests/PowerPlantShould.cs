@@ -10,12 +10,12 @@ namespace PowerPlantKata.Tests {
         [Test]
         public void supply_1_gigawatt_of_power_to_the_electric_network() {
             var aPowerPlant = new PowerPlant();
-            var powerPlantConsumer = Substitute.For<AreaPowerReceiver>();
+            var powerPlantConsumer = Substitute.For<Area>();
             aPowerPlant.AddPowerReceiver(powerPlantConsumer);
 
             aPowerPlant.SupplyPower();
 
-            powerPlantConsumer.Received(1).Receive(OneGigawatt);
+            powerPlantConsumer.Received(1).ReceiveFrom(aPowerPlant, OneGigawatt);
         }
         
         [Test]
@@ -28,8 +28,8 @@ namespace PowerPlantKata.Tests {
 
             aPowerPlant.SupplyPower();
 
-            anAreaConsumer.Received(1).Receive(Power.CreateMegawatts(500));
-            anotherAreaConsumer.Received(1).Receive(Power.CreateMegawatts(500));
+            anAreaConsumer.Received(1).ReceiveFrom(aPowerPlant, Power.CreateMegawatts(500));
+            anotherAreaConsumer.Received(1).ReceiveFrom(aPowerPlant, Power.CreateMegawatts(500));
         }
     }
 }

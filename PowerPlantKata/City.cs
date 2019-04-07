@@ -10,13 +10,17 @@ namespace PowerPlantKata {
         }
 
 
-        public void Receive(Power power) {
-            var averageBuildingElectricityNeeded = Power.CreateKilowatts(4);
-            powerReceivers.ForEach(consumers => consumers.Receive(averageBuildingElectricityNeeded));
-        }
-
         public void AddPowerReceiver(BuildingPowerReceiver powerReceiver) {
             powerReceivers.Add(powerReceiver);
+        }
+
+        public virtual void ReceiveFrom<T>(PowerProducer<T> powerSource, Power power) where T : PowerReceiver {
+            var averageBuildingElectricityNeeded = Power.CreateKilowatts(4);
+            powerReceivers.ForEach(consumers => consumers.ReceiveFrom(this, averageBuildingElectricityNeeded));
+        }
+
+        public virtual void GetNotifiedOfElectricConsumeOff(PowerReceiver powerReceiver, Power createKilowatts) {
+            throw new System.NotImplementedException();
         }
     }
 }
