@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using PowerPlantKata.PowerProducers;
 using PowerPlantKata.PowerReceivers;
+using PowerPlantKata.Reports;
 
 namespace PowerPlantKata {
     public class PowerPlant : PowerProducer<AreaPowerReceiver> {
@@ -21,5 +22,8 @@ namespace PowerPlantKata {
         }
 
 
+        public virtual void GetNotifiedOfElectricConsumeOff(AreaConsumptionReport areaConsumptionReport) {
+            throw new System.NotImplementedException();
+        }
     }
 }

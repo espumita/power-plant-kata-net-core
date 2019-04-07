@@ -10,7 +10,7 @@ namespace PowerPlantKata.Tests {
         [Test]
         public void supply_1_gigawatt_of_power_to_the_electric_network() {
             var aPowerPlant = new PowerPlant();
-            var powerPlantConsumer = Substitute.For<Area>();
+            var powerPlantConsumer = Substitute.For<Area>(new object[]{ null });
             aPowerPlant.AddPowerReceiver(powerPlantConsumer);
 
             aPowerPlant.SupplyPower();

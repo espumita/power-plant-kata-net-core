@@ -12,7 +12,7 @@ namespace PowerPlantKata.Tests {
 
         [Test]
         public void transmit_power_from_area_to_individual_buildings() {
-            var anArea = Substitute.For<Area>();
+            var anArea = Substitute.For<Area>(new object[]{ null });
             var aCity = new City(id: Guid.NewGuid());
             var aBuildingConsumer = Substitute.For<BuildingPowerReceiver>();
             var aNotherBuildingConsumer = Substitute.For<BuildingPowerReceiver>();
@@ -28,7 +28,7 @@ namespace PowerPlantKata.Tests {
         
         [Test]
         public void notify_consume_of_all_buildings_to_area_when_electricity_is_consumed() {
-            var anArea = Substitute.For<Area>();
+            var anArea = Substitute.For<Area>(new object[]{ null });
             var aCity = new City(id: Guid.NewGuid());
             aCity.ReceiveFrom(anArea, SomeAreaPower);
             var aBuildingReport = new BuildingConsumptionReport(Guid.NewGuid(), Power.CreateKilowatts(2));
