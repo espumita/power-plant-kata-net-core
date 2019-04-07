@@ -1,35 +1,35 @@
 using NSubstitute;
 using NUnit.Framework;
-using PowerPlantKata.PowerConsumers;
+using PowerPlantKata.PowerReceivers;
 
 namespace PowerPlantKata.Tests {
     
     public class PowerPlantShould {
-        private Electricity OneGigawatt = Electricity.CreateOneGigawatt();
+        private Power OneGigawatt = Power.CreateOneGigawatt();
 
         [Test]
-        public void supply_1_gigawatt_to_the_electric_network() {
+        public void supply_1_gigawatt_of_power_to_the_electric_network() {
             var aPowerPlant = new PowerPlant();
-            var powerPlantConsumer = Substitute.For<AreaElectricConsumer>();
-            aPowerPlant.AddElectricConsumer(powerPlantConsumer);
+            var powerPlantConsumer = Substitute.For<AreaPowerReceiver>();
+            aPowerPlant.AddPowerReceiver(powerPlantConsumer);
 
-            aPowerPlant.SupplyElectricity();
+            aPowerPlant.SupplyPower();
 
-            powerPlantConsumer.Received(1).Consume(OneGigawatt);
+            powerPlantConsumer.Received(1).Receive(OneGigawatt);
         }
         
         [Test]
         public void supply_electricity_to_multiple_areas() {
             var aPowerPlant = new PowerPlant();
-            var anAreaConsumer = Substitute.For<AreaElectricConsumer>();
-            var anotherAreaConsumer = Substitute.For<AreaElectricConsumer>();
-            aPowerPlant.AddElectricConsumer(anAreaConsumer);
-            aPowerPlant.AddElectricConsumer(anotherAreaConsumer);
+            var anAreaConsumer = Substitute.For<AreaPowerReceiver>();
+            var anotherAreaConsumer = Substitute.For<AreaPowerReceiver>();
+            aPowerPlant.AddPowerReceiver(anAreaConsumer);
+            aPowerPlant.AddPowerReceiver(anotherAreaConsumer);
 
-            aPowerPlant.SupplyElectricity();
+            aPowerPlant.SupplyPower();
 
-            anAreaConsumer.Received(1).Consume(Electricity.CreateMegawatts(500));
-            anotherAreaConsumer.Received(1).Consume(Electricity.CreateMegawatts(500));
+            anAreaConsumer.Received(1).Receive(Power.CreateMegawatts(500));
+            anotherAreaConsumer.Received(1).Receive(Power.CreateMegawatts(500));
         }
     }
 }

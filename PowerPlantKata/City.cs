@@ -1,22 +1,22 @@
 using System.Collections.Generic;
-using PowerPlantKata.PowerConsumers;
 using PowerPlantKata.PowerProducers;
+using PowerPlantKata.PowerReceivers;
 
 namespace PowerPlantKata {
-    public class City : CityElectricConsumer, ElectricProducer<BuildingElectricConsumer> {
-        private readonly List<BuildingElectricConsumer> consumers;
+    public class City : CityPowerReceiver, PowerProducer<BuildingPowerReceiver> {
+        private readonly List<BuildingPowerReceiver> powerReceivers;
         public City() {
-            consumers = new List<BuildingElectricConsumer>();
+            powerReceivers = new List<BuildingPowerReceiver>();
         }
 
 
-        public void Consume(Electricity electricity) {
-            var averageBuildingElectricityNeeded = Electricity.CreateKilowatts(4);
-            consumers.ForEach(consumers => consumers.Consume(averageBuildingElectricityNeeded));
+        public void Receive(Power power) {
+            var averageBuildingElectricityNeeded = Power.CreateKilowatts(4);
+            powerReceivers.ForEach(consumers => consumers.Receive(averageBuildingElectricityNeeded));
         }
 
-        public void AddElectricConsumer(BuildingElectricConsumer consumer) {
-            consumers.Add(consumer);
+        public void AddPowerReceiver(BuildingPowerReceiver powerReceiver) {
+            powerReceivers.Add(powerReceiver);
         }
     }
 }

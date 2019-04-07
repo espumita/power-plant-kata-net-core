@@ -1,40 +1,40 @@
 namespace PowerPlantKata {
-    public class Electricity {
+    public class Power {
         private const long GigawattsInWatts = 1000000000;
         private const long MegawattsInWatts = 1000000;
         private const long KiloWattsInWatts = 1000;
         private long watts;
 
 
-        public static Electricity CreateOneGigawatt() {
-            return new Electricity(1, 0, 0);
+        public static Power CreateOneGigawatt() {
+            return new Power(1, 0, 0);
         }
 
-        public static Electricity CreateMegawatts(long megawatts) {
-            return new Electricity(0, megawatts, 0);
+        public static Power CreateMegawatts(long megawatts) {
+            return new Power(0, megawatts, 0);
         }
 
-        public static Electricity CreateKilowatts(long kilowatts) {
-            return new Electricity(0, 0 , kilowatts);
+        public static Power CreateKilowatts(long kilowatts) {
+            return new Power(0, 0 , kilowatts);
         }
 
-        private Electricity(long gigawatts, long megawatts, long kiloWatts) {
+        private Power(long gigawatts, long megawatts, long kiloWatts) {
             watts = GigawattsInWatts * gigawatts;
             watts += MegawattsInWatts * megawatts;
             watts += KiloWattsInWatts * kiloWatts;
         }
 
-        private Electricity(long watts) {
+        private Power(long watts) {
             this.watts = watts;
         }
 
-        public Electricity GetDividedFor(int divisionNumber) {
+        public Power GetDividedFor(int divisionNumber) {
             var kilowattsDivided = watts / divisionNumber;
-            return new Electricity(kilowattsDivided);
+            return new Power(kilowattsDivided);
         }
 
 
-        protected bool Equals(Electricity other) {
+        protected bool Equals(Power other) {
             return watts == other.watts;
         }
 
@@ -42,7 +42,7 @@ namespace PowerPlantKata {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((Electricity) obj);
+            return Equals((Power) obj);
         }
 
         public override int GetHashCode() {

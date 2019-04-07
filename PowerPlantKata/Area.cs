@@ -1,23 +1,23 @@
 using System.Collections.Generic;
-using PowerPlantKata.PowerConsumers;
 using PowerPlantKata.PowerProducers;
+using PowerPlantKata.PowerReceivers;
 
 namespace PowerPlantKata {
     
-    public class Area : AreaElectricConsumer, ElectricProducer<CityElectricConsumer> {
-        private List<CityElectricConsumer> consumers;
+    public class Area : AreaPowerReceiver, PowerProducer<CityPowerReceiver> {
+        private List<CityPowerReceiver> powerReceivers;
         
         public Area() {
-            consumers = new List<CityElectricConsumer>();
+            powerReceivers = new List<CityPowerReceiver>();
         }
 
-        public void Consume(Electricity electricity) {
-            var electricityForEachConsumer = electricity.GetDividedFor(consumers.Count);
-            consumers.ForEach(consumer => consumer.Consume(electricityForEachConsumer));
+        public void AddPowerReceiver(CityPowerReceiver powerReceiver) {
+            powerReceivers.Add(powerReceiver);
         }
 
-        public void AddElectricConsumer(CityElectricConsumer consumer) {
-            consumers.Add(consumer);
+        public void Receive(Power power) {
+            var electricityForEachConsumer = power.GetDividedFor(powerReceivers.Count);
+            powerReceivers.ForEach(consumer => consumer.Receive(electricityForEachConsumer));
         }
     }
 }

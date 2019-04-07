@@ -1,23 +1,23 @@
 using NSubstitute;
 using NUnit.Framework;
-using PowerPlantKata.PowerConsumers;
+using PowerPlantKata.PowerReceivers;
 
 namespace PowerPlantKata.Tests {
     public class AreaShould {
-        private Electricity SomePowerPlantElectricity = Electricity.CreateMegawatts(500);
+        private Power SomePowerPlantPower = Power.CreateMegawatts(500);
 
         [Test]
         public void transmit_electricity_from_power_plant_to_cities() {
             var anArea = new Area();
-            var anCityConsumer = Substitute.For<CityElectricConsumer>();
-            var anotherCityConsumer = Substitute.For<CityElectricConsumer>();
-            anArea.AddElectricConsumer(anCityConsumer);
-            anArea.AddElectricConsumer(anotherCityConsumer);
+            var anCityConsumer = Substitute.For<CityPowerReceiver>();
+            var anotherCityConsumer = Substitute.For<CityPowerReceiver>();
+            anArea.AddPowerReceiver(anCityConsumer);
+            anArea.AddPowerReceiver(anotherCityConsumer);
 
-            anArea.Consume(SomePowerPlantElectricity);
+            anArea.Receive(SomePowerPlantPower);
 
-            anCityConsumer.Received(1).Consume(Electricity.CreateMegawatts(250));
-            anotherCityConsumer.Received(1).Consume(Electricity.CreateMegawatts(250));
+            anCityConsumer.Received(1).Receive(Power.CreateMegawatts(250));
+            anotherCityConsumer.Received(1).Receive(Power.CreateMegawatts(250));
         }
         
     }
