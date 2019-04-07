@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using PowerPlantKata.PowerProducers;
 using PowerPlantKata.PowerReceivers;
+using PowerPlantKata.Reports;
 
 namespace PowerPlantKata {
     
@@ -20,5 +21,8 @@ namespace PowerPlantKata {
             powerReceivers.ForEach(consumer => consumer.ReceiveFrom(this, electricityForEachConsumer));
         }
 
+        public virtual void GetNotifiedOfElectricConsumeOff(CityConsumptionReport cityConsumptionReport) {
+            throw new System.NotImplementedException();
+        }
     }
 }

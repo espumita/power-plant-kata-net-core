@@ -10,7 +10,7 @@ namespace PowerPlantKata.Tests {
         [Test]
         public void notify_cities_when_they_consume_electricity() {
             var aBuilding = new Building(id: Guid.NewGuid());
-            var city = Substitute.For<City>();
+            var city = Substitute.For<City>(new object[]{ null });
             aBuilding.ReceiveFrom(city, Power.CreateKilowatts(4));
 
             aBuilding.NotifyConsumption();
