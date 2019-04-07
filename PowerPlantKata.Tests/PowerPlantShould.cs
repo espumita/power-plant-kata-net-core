@@ -1,6 +1,10 @@
+using System;
+using System.Collections.Generic;
+using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 using PowerPlantKata.PowerReceivers;
+using PowerPlantKata.Reports;
 
 namespace PowerPlantKata.Tests {
     
@@ -30,6 +34,27 @@ namespace PowerPlantKata.Tests {
 
             anAreaConsumer.Received(1).ReceiveFrom(aPowerPlant, Power.CreateMegawatts(500));
             anotherAreaConsumer.Received(1).ReceiveFrom(aPowerPlant, Power.CreateMegawatts(500));
+        }
+        
+        
+        [Test]
+        public void get_monthly_report() {
+            var aPowerPlant = new PowerPlant();
+            var aBuildingReport = new BuildingConsumptionReport(Guid.NewGuid(), Power.CreateKilowatts(5));
+            var someBuildingsReport = new List<BuildingConsumptionReport> {
+                aBuildingReport, aBuildingReport
+            };
+            var someCitiesReport = new List<CityConsumptionReport> {
+                new CityConsumptionReport(Guid.NewGuid(), someBuildingsReport),
+                new CityConsumptionReport(Guid.NewGuid(), someBuildingsReport)
+            };
+            aPowerPlant.GetNotifiedOfElectricConsumeOff(new AreaConsumptionReport(Guid.NewGuid(), someCitiesReport));
+            aPowerPlant.GetNotifiedOfElectricConsumeOff(new AreaConsumptionReport(Guid.NewGuid(), someCitiesReport));
+
+            var monthlyReport = aPowerPlant.GetMonthlyReport();
+            
+            monthlyReport.TotalGeneratedPower.Should().BeEquivalentTo(OneGigawatt);
+            monthlyReport.TotalConsumedPower().Should().BeEquivalentTo(Power.CreateKilowatts(40));
         }
     }
 }

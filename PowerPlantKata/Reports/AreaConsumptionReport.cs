@@ -30,5 +30,9 @@ namespace PowerPlantKata.Reports {
                 return (AreaId.GetHashCode() * 397) ^ (CityConsumptionReports != null ? CityConsumptionReports.GetHashCode() : 0);
             }
         }
+
+        public Power ConsumedPower() {
+            return CityConsumptionReports.Aggregate(Power.CreateKilowatts(0), (total, cityReport) => total + cityReport.ConsumedPower());
+        }
     }
 }

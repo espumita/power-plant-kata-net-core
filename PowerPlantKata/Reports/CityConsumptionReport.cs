@@ -1,19 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PowerPlantKata.Reports {
     public class CityConsumptionReport {
         public Guid cityId { get; }
-        public List<BuildingConsumptionReport> buildingConsumptionReports { get; }
+        public List<BuildingConsumptionReport> BuildingConsumptionReports { get; }
 
         public CityConsumptionReport(Guid cityId, List<BuildingConsumptionReport> buildingConsumptionReports) {
             this.cityId = cityId;
-            this.buildingConsumptionReports = buildingConsumptionReports;
+            this.BuildingConsumptionReports = buildingConsumptionReports;
         }
 
 
         protected bool Equals(CityConsumptionReport other) {
-            return cityId.Equals(other.cityId) && Equals(buildingConsumptionReports, other.buildingConsumptionReports);
+            return cityId.Equals(other.cityId) && Equals(BuildingConsumptionReports, other.BuildingConsumptionReports);
         }
 
         public override bool Equals(object obj) {
@@ -25,8 +26,12 @@ namespace PowerPlantKata.Reports {
 
         public override int GetHashCode() {
             unchecked {
-                return (cityId.GetHashCode() * 397) ^ (buildingConsumptionReports != null ? buildingConsumptionReports.GetHashCode() : 0);
+                return (cityId.GetHashCode() * 397) ^ (BuildingConsumptionReports != null ? BuildingConsumptionReports.GetHashCode() : 0);
             }
+        }
+
+        public Power ConsumedPower() {
+            return BuildingConsumptionReports.Aggregate(Power.CreateKilowatts(0), (total, buildingReport) => total + buildingReport.Power);
         }
     }
 }

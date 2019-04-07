@@ -5,11 +5,13 @@ using PowerPlantKata.Reports;
 
 namespace PowerPlantKata {
     public class PowerPlant : PowerProducer<AreaPowerReceiver> {
-        private List<AreaPowerReceiver> powerReceivers;
         private readonly Power power = Power.CreateOneGigawatt();
+        private List<AreaPowerReceiver> powerReceivers;
+        private List<AreaConsumptionReport> consumptionReports;
         
         public PowerPlant() {
             powerReceivers = new List<AreaPowerReceiver>();
+            consumptionReports = new List<AreaConsumptionReport>();
         }
 
         public void AddPowerReceiver(AreaPowerReceiver powerReceiver) {
@@ -22,8 +24,12 @@ namespace PowerPlantKata {
         }
 
 
-        public virtual void GetNotifiedOfElectricConsumeOff(AreaConsumptionReport areaConsumptionReport) {
-            throw new System.NotImplementedException();
+        public virtual void GetNotifiedOfElectricConsumeOff(AreaConsumptionReport consumptionReport) {
+            consumptionReports.Add(consumptionReport);
+        }
+
+        public PowerPlantConsumptionReport GetMonthlyReport() {
+            return new PowerPlantConsumptionReport(consumptionReports, power);
         }
     }
 }

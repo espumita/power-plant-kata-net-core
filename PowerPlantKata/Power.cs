@@ -17,6 +17,11 @@ namespace PowerPlantKata {
         public static Power CreateKilowatts(long kilowatts) {
             return new Power(0, 0 , kilowatts);
         }
+        
+        public static Power operator +(Power power1, Power power2){
+            var totalWatts = power1.watts + power2.watts;
+            return new Power(totalWatts);  
+        }  
 
         private Power(long gigawatts, long megawatts, long kiloWatts) {
             watts = GigawattsInWatts * gigawatts;
@@ -48,5 +53,7 @@ namespace PowerPlantKata {
         public override int GetHashCode() {
             return watts.GetHashCode();
         }
+        
+
     }
 }
