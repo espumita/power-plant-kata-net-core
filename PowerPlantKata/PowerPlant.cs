@@ -20,8 +20,6 @@ namespace PowerPlantKata {
             powerReceivers.ForEach(consumer => consumer.ReceiveFrom(this, powerForEachReceiver));
         }
 
-        public virtual void GetNotifiedOfElectricConsumeOff(PowerReceiver powerReceiver, Power createKilowatts) {
-            throw new System.NotImplementedException();
-        }
+
     }
 }

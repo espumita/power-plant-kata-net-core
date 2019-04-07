@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using PowerPlantKata.PowerProducers;
 using PowerPlantKata.PowerReceivers;
+using PowerPlantKata.Reports;
 
 namespace PowerPlantKata {
     public class City : CityPowerReceiver, PowerProducer<BuildingPowerReceiver> {
@@ -19,7 +20,7 @@ namespace PowerPlantKata {
             powerReceivers.ForEach(consumers => consumers.ReceiveFrom(this, averageBuildingElectricityNeeded));
         }
 
-        public virtual void GetNotifiedOfElectricConsumeOff(PowerReceiver powerReceiver, Power createKilowatts) {
+        public virtual void GetNotifiedOfElectricConsumeOff(BuildingConsumptionReport consumptionReport) {
             throw new System.NotImplementedException();
         }
     }
